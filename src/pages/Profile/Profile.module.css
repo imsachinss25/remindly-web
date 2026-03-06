@@ -1,0 +1,137 @@
+.container {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #f5f3f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Logo Section */
+.logoSection {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logoIconContainer {
+  width: 50px;
+  height: 50px;
+  background-color: #e67817;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 16px;
+  color: white;
+}
+
+.logoIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.brand {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  color: #2d2a26;
+}
+
+.tagline {
+  margin-top: 8px;
+  color: #7a746d;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+  color: #2d2a26;
+}
+
+.subtitle {
+  text-align: center;
+  margin: 10px 0 30px;
+  color: #7a746d;
+  font-size: 14px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.inputGroup label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #2d2a26;
+}
+
+.input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.input:focus {
+  border-color: #e67817;
+}
+
+/* Button */
+.button {
+  margin-top: 10px;
+  padding: 14px;
+  background-color: #e67817;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.button:hover {
+  background-color: #cf6510;
+}
+
+/* Switch Text */
+.switchText {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 14px;
+  color: #7a746d;
+}
+
+.switchLink {
+  color: #e67817;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.switchLink:hover {
+  text-decoration: underline;
+}

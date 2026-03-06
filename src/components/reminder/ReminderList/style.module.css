@@ -1,0 +1,23 @@
+.wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.title {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.clockIcon {
+color: #e67817;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+}

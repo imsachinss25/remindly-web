@@ -1,0 +1,37 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+.form input,
+.form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #e67e22;
+}
+
+.dateTimeWrapper {
+  margin-top: 18px;
+}
+
+.dateTime {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+  margin-bottom: 25px;
+
+}

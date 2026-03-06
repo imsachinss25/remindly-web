@@ -1,0 +1,73 @@
+.header {
+  height: 70px;
+  width: 100%;
+  padding: 0px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #d4d0d0;
+}
+
+.headerContent {
+    width: 800px;
+     display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.logoIcon {
+  width: 36px;
+  height: 36px;
+  background: #e67817;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.profileIcon {
+    color: #213547;
+    stroke-width: 1.7;
+}
+
+.brand {
+  font-size: 20px;
+  margin: 0;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.newBtn {
+  background: #e67817;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.newBtn:hover {
+  background: #cf6510;
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
