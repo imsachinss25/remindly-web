@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: process.env.REMINDER_SERVICE_API
+  baseURL: import.meta.env.VITE_REMINDER_SERVICE_API
 });
 
 API.interceptors.request.use((req) => {
