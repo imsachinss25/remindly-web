@@ -1,28 +1,26 @@
 import styles from "./style.module.css";
 import ReminderCard from "../ReminderCard";
-import { CalendarClock } from 'lucide-react';
+import { CalendarClock, CalendarX } from 'lucide-react';
 import { getReminders } from "../../../services/reminder";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import ListSkeleton from "../ListSkeleton";
 
-export default function ReminderList({ handleRefresh }) {
-
+export default function ReminderList() {
   const [loading, setLoading] = useState(false);
   const [reminders, setReminders] = useState([]);
-  
 
-
-  const fetchReminders = async () => {
+  const fetchReminders = useCallback(async () => {
     try {
       setLoading(true)
       const resp = await getReminders();
       setReminders(resp?.data)
-      onClose();
     } catch (e) {
-
+      toast.error("Oops, Something went wrong!");
     } finally {
       setLoading(false)
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchReminders()
@@ -30,22 +28,28 @@ export default function ReminderList({ handleRefresh }) {
 
   return (
     <div className={styles.wrapper}>
-    
       <h3 className={styles.title}>
         <CalendarClock className={styles.clockIcon} />
         Upcoming ({reminders.length})
       </h3>
-
-      <div className={styles.list}>
-        {reminders.map((reminder) => (
-          <div key={reminder.id}>
-            <ReminderCard
-              reminder={reminder}
-              handleRefresh={fetchReminders}
-            />
+      {
+        loading
+          ? <ListSkeleton />
+          : <div className={styles.list}>
+            {!reminders.length ? <div className={styles.emptyList}>
+              <CalendarX /> No reminders available
+            </div>
+              :
+              reminders.map((reminder, index) => (
+                <div key={`reminder-list-${reminder._id}-${index}`}>
+                  <ReminderCard
+                    reminder={reminder}
+                    handleRefresh={fetchReminders}
+                  />
+                </div>
+              ))}
           </div>
-        ))}
-      </div>
+      }
     </div>
   );
 }

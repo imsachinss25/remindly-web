@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Modal from "../../common/Modal";
 import styles from "./CreateReminderModal.module.css";
 import Input from "../../common/Input";
@@ -16,14 +16,22 @@ function CreateReminderModal({ onClose }) {
   })
   const [loading, setLoading] = useState(false);
 
+  const getTodayDate = useMemo(() => {
+    const today = new Date();
+    return today.toLocaleDateString("en-CA");
+  }, []);
+
+  const getCurrentTime = useMemo(() => {
+    const now = new Date();
+    return now.toTimeString().slice(0, 5);
+  }, []);
+
   const handleChange = useCallback((key, e) => {
     setReminderData({
       ...remiderData,
       [key]: e.target.value
     })
   }, [remiderData])
-
-
 
   const handleSubmit = useCallback(async (e) => {
     try {
@@ -60,8 +68,8 @@ function CreateReminderModal({ onClose }) {
             Reminder Date & Time
           </label>
           <div className={styles.dateTime}>
-            <input value={remiderData?.date} onChange={(e) => handleChange('date', e)} type="date" required />
-            <input value={remiderData?.time} onChange={(e) => handleChange('time', e)} type="time" required />
+            <input min={getTodayDate()} value={remiderData?.date} onChange={(e) => handleChange('date', e)} type="date" required />
+            <input min={remiderData?.date === getTodayDate() ? getCurrentTime() : "00:00"} value={remiderData?.time} onChange={(e) => handleChange('time', e)} type="time" required />
           </div>
         </div>
 

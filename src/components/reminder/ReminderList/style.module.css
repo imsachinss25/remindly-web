@@ -11,7 +11,7 @@
 }
 
 .clockIcon {
-color: #e67817;
+  color: #e67817;
 }
 
 .list {
@@ -20,4 +20,15 @@ color: #e67817;
   gap: 20px;
   max-height: 600px;
   overflow-y: auto;
+}
+
+.emptyList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  background-color: #e67d2218;
+  height: 200px;
+  border-radius: 14px;
 }

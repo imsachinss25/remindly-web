@@ -25,7 +25,7 @@ const DeleteReminder = ({ reminder, onClose, afterDelete }) => {
 	return (
 		<Modal title="Delete" onClose={onClose}>
 			<p>
-				Are you sure you want to delete reminder {reminder?.title} ?
+				Are you sure you want to delete reminder "{reminder?.title}" ?
 			</p>
 			<div className={styles.ctaWrapper}>
 				<Button onClick={onClose} variant="secondary">

@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { User } from "lucide-react";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
-
 import styles from "./Profile.module.css";
 import Input from "../../components/common/Input/index";
 import Button from "../../components/common/Button/index";
@@ -21,10 +20,8 @@ const Profile = () => {
 	const handleSubmit = useCallback(async () => {
 		try {
 			setLoading(true);
-
 			const payload = { name };
 			const response = await updateUser(payload)
-
 			const updatedUser = response?.data?.user
 			if (updatedUser) {
 				toast.success("Profile updated successfully!");
@@ -51,23 +48,15 @@ const Profile = () => {
 	return (
 		<>
 			<Header showCreateReminderCta={false} />
-
 			<div className={styles.container}>
-
-				{/* Logo Section */}
 				<div className={styles.logoSection}>
 					<div className={styles.logoIconContainer}>
 						<User className={styles.logoIcon} />
 					</div>
 					<h1 className={styles.brand}>{"User Profile"}</h1>
-
 				</div>
-
-				{/* Card */}
 				<div className={styles.card}>
-
 					<form className={styles.form}>
-
 						<Input
 							label="Name"
 							type="name"
@@ -86,13 +75,14 @@ const Profile = () => {
 							required
 						/>
 
-						<Button disabled={!name} loading={loading} type="submit" variant="primary" onClick={handleSubmit}>
-							{"Update"}
-						</Button>
-						<br/>
-						<Button loading={loading} type="submit" variant="outline" onClick={logout}>
-							{"Logout"}
-						</Button>
+						<div className={styles.ctaWrapper}>
+							<Button disabled={!name} loading={loading} type="submit" variant="primary" onClick={handleSubmit}>
+								{"Update"}
+							</Button>
+							<Button loading={loading} type="submit" variant="outline" onClick={logout}>
+								{"Logout"}
+							</Button>
+						</div>
 					</form>
 				</div>
 			</div>
