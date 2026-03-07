@@ -21,7 +21,7 @@ function CreateReminderModal({ onClose, onCreated }) {
     return today.toLocaleDateString("en-CA");
   }, []);
 
-  const getCurrentTime = useMemo(() => {
+  const currentTime = useMemo(() => {
     const now = new Date();
     return now.toTimeString().slice(0, 5);
   }, []);
@@ -70,7 +70,7 @@ function CreateReminderModal({ onClose, onCreated }) {
           </label>
           <div className={styles.dateTime}>
             <input min={getTodayDate} value={remiderData?.date} onChange={(e) => handleChange('date', e)} type="date" required />
-            <input min={remiderData?.date === getTodayDate ? getCurrentTime() : "00:00"} value={remiderData?.time} onChange={(e) => handleChange('time', e)} type="time" required />
+            <input min={remiderData?.date === getTodayDate ? currentTime : "00:00"} value={remiderData?.time} onChange={(e) => handleChange('time', e)} type="time" required />
           </div>
         </div>
 
