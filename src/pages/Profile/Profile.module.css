@@ -1,5 +1,5 @@
 .container {
-  height: calc(90vh - 150px);
+  height: calc(90vh - 80px);
   width: 100vw;
   background-color: #f5f3f0;
   display: flex;

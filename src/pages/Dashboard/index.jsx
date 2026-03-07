@@ -6,18 +6,23 @@ import CreateReminderModal from "../../components/reminder/CreateReminderModal";
 
 const Dashboard = () => {
 	const [open, setOpen] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0); // to refetch the reminders
 	
 	const handleOpenReminderModal = useCallback(() => {
 		setOpen(true)
 	}, [])
 
+  const refetchReminders = useCallback(() => {
+		setRefreshKey(refreshKey + 1)
+	}, [refreshKey])
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.contentWrapper}>
 				<Header onNewReminder={handleOpenReminderModal}/>
-				<ReminderList/>
+				<ReminderList refreshKey={refreshKey}/>
 			</div>
-			 {open && <CreateReminderModal onClose={() => setOpen(false)} />}
+			 {open && <CreateReminderModal onCreated={refetchReminders} onClose={() => setOpen(false)} />}
 
 		</div>
 	)

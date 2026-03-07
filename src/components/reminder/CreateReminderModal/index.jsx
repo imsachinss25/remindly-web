@@ -6,7 +6,7 @@ import { createReminder } from "../../../services/reminder";
 import Button from "../../common/Button";
 import { toast } from "react-toastify";
 
-function CreateReminderModal({ onClose }) {
+function CreateReminderModal({ onClose, onCreated }) {
 
   const [remiderData, setReminderData] = useState({
     title: '',
@@ -39,6 +39,7 @@ function CreateReminderModal({ onClose }) {
       setLoading(true)
       const resp = await createReminder(remiderData);
       toast.success("Reminder created successfully!");
+      onCreated();
       onClose();
     } catch (e) {
       toast.error("Oops, Something went wrong!");
@@ -68,8 +69,8 @@ function CreateReminderModal({ onClose }) {
             Reminder Date & Time
           </label>
           <div className={styles.dateTime}>
-            <input min={getTodayDate()} value={remiderData?.date} onChange={(e) => handleChange('date', e)} type="date" required />
-            <input min={remiderData?.date === getTodayDate() ? getCurrentTime() : "00:00"} value={remiderData?.time} onChange={(e) => handleChange('time', e)} type="time" required />
+            <input min={getTodayDate} value={remiderData?.date} onChange={(e) => handleChange('date', e)} type="date" required />
+            <input min={remiderData?.date === getTodayDate ? getCurrentTime() : "00:00"} value={remiderData?.time} onChange={(e) => handleChange('time', e)} type="time" required />
           </div>
         </div>
 

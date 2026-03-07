@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ListSkeleton from "../ListSkeleton";
 
-export default function ReminderList() {
+export default function ReminderList({ refreshKey }) {
   const [loading, setLoading] = useState(false);
   const [reminders, setReminders] = useState([]);
 
@@ -24,13 +24,13 @@ export default function ReminderList() {
 
   useEffect(() => {
     fetchReminders()
-  }, [])
+  }, [refreshKey])
 
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>
         <CalendarClock className={styles.clockIcon} />
-        Upcoming ({reminders.length})
+        {loading ? 'Fetching' : `Upcoming (${reminders.length})`}
       </h3>
       {
         loading

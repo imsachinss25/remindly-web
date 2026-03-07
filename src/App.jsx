@@ -12,21 +12,21 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={ <PublicRoute>
-                <Login />
-              </PublicRoute>} />
-        <Route path="/dashboard" element={<ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<PublicRoute>
+            <Login />
+          </PublicRoute>} />
+          <Route path="/dashboard" element={<ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>} />
 
-              <Route path="/profile" element={<>
-                <Profile />
-              </>} />
-      </Routes>
-    </BrowserRouter>
-    <ToastContainer
+          <Route path="/profile" element={<ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>} />
+        </Routes>
+      </BrowserRouter>
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         theme="light"
