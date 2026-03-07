@@ -1,5 +1,9 @@
 import API from "./api";
 
+// Health check
+export const healthCheck = () =>
+  API.get(import.meta.env.VITE_REMINDER_SERVICE_API.replace('api', ''));
+
 export const registerUser = (data) =>
   API.post("/auth/register", data);
 

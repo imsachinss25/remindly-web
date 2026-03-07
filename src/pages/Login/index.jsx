@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Bell } from "lucide-react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import styles from "./style.module.css";
 import Input from "../../components/common/Input/index";
 import Button from "../../components/common/Button/index";
+import { healthCheck } from "../../services/auth";
 
 const Login = () => {
 	const [isLogin, setIsLogin] = useState(true);
@@ -15,6 +16,7 @@ const Login = () => {
 	const [email, setEmail] = useState('');
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
+	const [backendReady, setBackendReady] = useState(false);
 
 	const handleEmailChange = useCallback((e) => {
 		setEmail(e.target.value)
@@ -61,6 +63,46 @@ const Login = () => {
 
 		return !email || !password || !name
 	}, [email, password, name])
+
+useEffect(() => {
+  let interval;
+
+  const checkBackend = async () => {
+    try {
+      const resp = await healthCheck();
+
+      if (resp.status === 200) {
+        setBackendReady(true);
+        if (interval) clearInterval(interval);
+      }
+    } catch (err) {
+      // start polling only if not already started
+      if (!interval) {
+        interval = setInterval(checkBackend, 5000);
+      }
+    }
+  };
+
+  // First call immediately
+  checkBackend();
+
+  return () => {
+    if (interval) clearInterval(interval);
+  };
+}, []);
+
+	/**
+	 * as Backend is deployed on free tier of Render, so if there's inactivity for 15 min, it shutdowns.
+	 * hence, it needs 1-2 min to restart
+	 */
+	if (!backendReady) {
+  return (
+    <div className={styles.container}>
+      <h3>Starting backend service...</h3>
+      <p>Please wait ~1-2 minutes while the server wakes up.</p>
+    </div>
+  );
+}
 
 
 	return (
